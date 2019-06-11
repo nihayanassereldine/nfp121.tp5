@@ -1,6 +1,6 @@
 package question3;
 
-import java.util.Set;
+import java.util.*;
 
 public class Tests extends junit.framework.TestCase {
 

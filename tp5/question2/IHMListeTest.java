@@ -164,6 +164,7 @@ public class IHMListeTest extends junit.framework.TestCase{
             Component[] boutons = ((JPanel)subSubComponents[2]).getComponents();
             assertTrue(boutons[0] instanceof JButton);// boutonRechercher
             assertTrue(boutons[1] instanceof JButton);// boutonRetirer
+            JButton retirer = ((JButton)boutons[1]);
             assertTrue(boutons[2] instanceof JLabel);// 
             assertTrue(boutons[3] instanceof Checkbox);// croissant
             assertTrue(boutons[4] instanceof Checkbox);// decroissant
@@ -171,8 +172,8 @@ public class IHMListeTest extends junit.framework.TestCase{
             JTextField saisie = (JTextField)subSubComponents[1];
             saisie.setText("you");
 
-            Point location = boutons[1].getLocationOnScreen();
-            mouseMoveAndClick(location.x+(boutons[1].getWidth()/2),location.y+(boutons[1].getHeight()/2));
+            retirer.doClick();
+            robot.delay(300);
 
             JLabel res = (JLabel)subSubComponents[0];
             assertTrue("\"you\" doit être présent, pour ce test",res.getText().endsWith("true"));
@@ -180,14 +181,14 @@ public class IHMListeTest extends junit.framework.TestCase{
             saisie = (JTextField)subSubComponents[1];
             saisie.setText("you");
 
-            location = boutons[0].getLocationOnScreen();
-            mouseMoveAndClick(location.x+(boutons[0].getWidth()/2),location.y+(boutons[0].getHeight()/2));
+            retirer.doClick();
+            robot.delay(300);
 
             res = (JLabel)subSubComponents[0];
-            assertTrue("retrait est-il inopérant ??? ",res.getText().endsWith("false"));
+           assertTrue("retrait est-il inopérant ??? ",res.getText().endsWith("false"));
 
-            location = boutons[1].getLocationOnScreen();
-            mouseMoveAndClick(location.x+(boutons[1].getWidth()/2),location.y+(boutons[1].getHeight()/2));
+            retirer.doClick();
+            robot.delay(300);
 
             res = (JLabel)subSubComponents[0];
             assertTrue(res.getText().endsWith("false"));
@@ -280,31 +281,31 @@ public class IHMListeTest extends junit.framework.TestCase{
 
             if(array[i]>='a'&&array[i]<='z'){
                 robot.keyPress((int)array[i]-(int)'a'+65);
-                robot.delay(60);
+                robot.delay(100);
                 robot.keyRelease((int)array[i]-(int)'a'+65);
             }else if(array[i]==' '){
                 robot.keyPress(KeyEvent.VK_SPACE);
-                robot.delay(60);
+                robot.delay(100);
                 robot.keyRelease(KeyEvent.VK_SPACE);
             }else if(array[i]>='A'&&array[i]<='Z'){
-                robot.keyPress(KeyEvent.VK_SHIFT);
-                robot.delay(60);
+              //  robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.delay(100);
                 robot.keyPress((int)array[i]-(int)'A'+65);
-                robot.delay(10);
+                robot.delay(50);
                 robot.keyRelease((int)array[i]-(int)'A'+65);
-                robot.delay(60);
-                robot.keyRelease(KeyEvent.VK_SHIFT);
+                robot.delay(100);
+              //  robot.keyRelease(KeyEvent.VK_SHIFT);
             }else if(array[i]>='0'&&array[i]<='9'){
-                robot.keyPress(KeyEvent.VK_SHIFT);
-                robot.delay(60);
+              //  robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.delay(100);
                 robot.keyPress(KeyEvent.VK_0+(int)(array[i]-'0'));
-                robot.delay(60);
+                robot.delay(100);
                 robot.keyRelease(KeyEvent.VK_0+(int)(array[i]-'0'));
-                robot.delay(60);
+                robot.delay(100);
 
-                robot.keyRelease(KeyEvent.VK_SHIFT);
+              //  robot.keyRelease(KeyEvent.VK_SHIFT);
             }
-            robot.delay(60);
+            robot.delay(100);
 
         }
     }
@@ -320,15 +321,15 @@ public class IHMListeTest extends junit.framework.TestCase{
 
     public void mouseMoveAndClickClick(int x, int y){
         robot.mouseMove( x,y);
-        robot.delay(30);
+        robot.delay(60);
         robot.mousePress(InputEvent.BUTTON1_MASK);
-        robot.delay(30);
+        robot.delay(60);
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
-        robot.delay(30);
+        robot.delay(60);
         robot.mousePress(InputEvent.BUTTON1_MASK);
-        robot.delay(30);
+        robot.delay(60);
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
-        robot.delay(30);
+        robot.delay(60);
     }//end mouseMoveAndClickClick
 
    

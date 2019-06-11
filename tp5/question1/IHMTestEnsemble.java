@@ -1,7 +1,9 @@
 package question1;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
+import javax.swing .event.*;
 
 public class IHMTestEnsemble extends JFrame {
 
@@ -71,42 +73,34 @@ public class IHMTestEnsemble extends JFrame {
         button1 = new JButton("union");
         button1.setBackground(java.awt.Color.red);
         button1.setName("union");
-        button1.addActionListener(null  // à compléter, par une instance de
-                                        // classe anonyme, usage de
-                                        // unionActionPerformed voir en bas de
-                                        // page
-        );
+        button1.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent ae){
+                unionActionPerformed(ae);}});
 
         panel3.add(button1);
         button2 = new JButton("intersection");
         button2.setBackground(java.awt.Color.yellow);
         button2.setName("intersection");
-        button2.addActionListener(null  // à compléter, par une instance de
-                                        // classe anonyme,
-                                        // intersectionActionPerformed voir en
-                                        // bas de page
-        );
+        button2.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent ae){
+                intersectionActionPerformed(ae);}});
 
         panel3.add(button2);
         button3 = new JButton("difference");
         button3.setBackground(java.awt.Color.pink);
         button3.setActionCommand("difference");
         button3.setName("difference");
-        button3.addActionListener(null  // à compléter, par une instance de
-                                        // classe anonyme, usage de
-                                        // differenceActionPerformed voir en bas
-                                        // de page
-        );
+        button3.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent ae)
+                    {differenceActionPerformed(ae);}});
 
         panel3.add(button3);
         button4 = new JButton("diffSymetrique");
         button4.setBackground(java.awt.Color.cyan);
         button4.setName("diffSymetrique");
-        button4.addActionListener(null  // à compléter, par une instance de
-                                        // classe anonyme, usgae de
-                                        // diffSymetriqueActionPerformed voir en
-                                        // bas de page
-        );
+        button4.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent ae){
+                    diffSymetriqueActionPerformed(ae);}});
 
         panel3.add(button4);
         add(panel3);
@@ -141,29 +135,41 @@ public class IHMTestEnsemble extends JFrame {
     // ne pas modifier ces lignes
     private void differenceActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_differenceActionPerformed
         // Add your handling code here:
-        Ensemble<String> e1 = getSet(textField1);
-        Ensemble<String> e2 = getSet(textField2);
-        textField3.setText(e1.diff(e2).toString());
+        if(evt .getSource() == button3)
+       {
+           Ensemble<String> e1 = getSet(textField1);
+           Ensemble<String> e2 = getSet(textField2);
+           textField3.setText( e1.diff(e2).toString());
+       }
     }// GEN-LAST:event_differenceActionPerformed
 
     private void intersectionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_intersectionActionPerformed
         // Add your handling code here:
-        Ensemble<String> e1 = getSet(textField1);
-        Ensemble<String> e2 = getSet(textField2);
-        textField3.setText((e1.inter(e2)).toString());
+         if(evt .getSource() == button2)
+        {
+            Ensemble<String> e1 = getSet(textField1);
+            Ensemble<String> e2 = getSet(textField2);
+            textField3.setText( (e1.inter(e2)).toString());
+        }
     }// GEN-LAST:event_intersectionActionPerformed
 
     private void unionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_unionActionPerformed
-        Ensemble<String> e1 = getSet(textField1);
-        Ensemble<String> e2 = getSet(textField2);
-        textField3.setText(e1.union(e2).toString());
+        if(evt .getSource() == button1)
+        {
+            Ensemble<String> e1 = getSet(textField1);
+            Ensemble<String> e2 = getSet(textField2);
+            textField3.setText( e1.union(e2).toString());
+        }
     }// GEN-LAST:event_unionActionPerformed
 
     private void diffSymetriqueActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_button4ActionPerformed
         // Add your handling code here:
-        Ensemble<String> e1 = getSet(textField1);
-        Ensemble<String> e2 = getSet(textField2);
-        textField3.setText(e1.diffSym(e2).toString());
+         if(evt .getSource() == button4)
+        {
+            Ensemble<String> e1 = getSet(textField1);
+            Ensemble<String> e2 = getSet(textField2);
+            textField3.setText( e1.diffSym(e2).toString());
+        }
     }// GEN-LAST:event_button4ActionPerformed
     
     public static void main(String[] args){

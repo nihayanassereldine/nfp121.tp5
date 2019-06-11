@@ -2,7 +2,7 @@ package question2;
 
 import java.util.List;
 import java.util.Map;
-// à  compléter
+import java.util.*;
 import java.util.StringTokenizer;
 
 public class Chapitre2CoreJava2 {
@@ -12,11 +12,17 @@ public class Chapitre2CoreJava2 {
      * 
      **/
     public static List<String> listeDesMots() {
-        List<String> liste = null; // à  compléter
+        List<String> liste = new LinkedList<String>(); // à  compléter
 
-        StringTokenizer st = new StringTokenizer(Chapitre2CoreJava2.CHAPITRE2,
+       StringTokenizer st = new StringTokenizer(Chapitre2CoreJava2.CHAPITRE2,
                 "[](){};, :.\n\"");
         // à  compléter
+             while (st.hasMoreTokens()) 
+             {
+                 try{ liste.add(st.nextToken());}
+                 catch(Exception e){e.printStackTrace();}
+             }
+       //   liste = new ArrayList<String>(Arrays.asList(Chapitre2CoreJava2.CHAPITRE2.split("\n\"")));
 
         return liste;
     }
@@ -28,12 +34,21 @@ public class Chapitre2CoreJava2 {
      * @param liste la liste des mots
      */
     public static Map<String, Integer> occurrencesDesMots(List<String> liste) {
-        Map<String, Integer> table = null; // à  compléter
-        // à  compléter
-        // à  compléter
+        Map<String, Integer> table = new HashMap<String, Integer>(); // à  compléter
+        
+        Iterator<String> it = liste.iterator();
+        while(it.hasNext())
+        {
+            String c= it.next();
+            int occ= Collections.frequency(liste,c);
+            if(!table.containsKey(c))
+                table.put(c,occ);
+        }
         return table;
     }
-
+    
+    
+    
     public static final String CHAPITRE2 =
 
         "Core Java 2, Volume II"
